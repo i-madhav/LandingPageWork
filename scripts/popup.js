@@ -36,6 +36,7 @@ popupBtn.addEventListener("click" , sendData);
 function sendData() {
     const workEmail = document.querySelector("#workEmail")
     let workValue = workEmail.value;
+   
 
     const firstName = document.querySelector("#firstName");
     let firstValue = firstName.value;
@@ -50,6 +51,9 @@ function sendData() {
     firstName:firstValue,
     lastName:lastValue
    }
+
+   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   if(!emailRegex.test(valueObj.workEmail)) return alert("Enter valid email");
 
    handlePopUpSubmission(valueObj);
    console.log(valueObj);
