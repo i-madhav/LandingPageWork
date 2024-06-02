@@ -5,11 +5,8 @@ export function handlePopUp() {
         <label for="workEmail" class="work display">Work email</label>
         <input type="email" placeholder="Work email*" id="workEmail" class="commonCss">
         <div class="inputName">
-
-            <label for="firstName" class="first display">First name</label>
             <input type="text" placeholder="First name*" id="firstName" class="commonCss">
 
-            <label for="lastName" class="last display">Last name</label>
             <input type="text" placeholder="Last name*" id="lastName" class="commonCss">
         </div>
 
@@ -22,7 +19,6 @@ export function handlePopUp() {
         <div class="popupBtn">
             <button>Contact Us</button>
         </div>
-
     </div>
 </div>`
 
@@ -55,6 +51,7 @@ function sendData() {
     lastName:lastValue
    }
 
+   handlePopUpSubmission(valueObj);
    console.log(valueObj);
 
    workEmail.value = " ";
@@ -64,6 +61,21 @@ function sendData() {
    document.body.removeChild(popContainer);
 }
 
+async function handlePopUpSubmission(value){
+    try {
+        const response = await fetch(`https://getform.io/f/eapdkqja`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:value
+        });
+
+        console.log(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 inputs.forEach((input) => {
     input.addEventListener("click", () => {
